@@ -17,24 +17,16 @@ Manage multiaccount subdomain hosted zones and zone delegations.
 
 ## lab managed domains (account where top level domain resides)
 
-* twdps.io (dps-1)  
 * twdps.digital (dps-2)  
 
 Creates the following hosted zones in the specified account:  
-| hosted zone                     | dps-1 | dps-2 |
-|---------------------------------|:-----:|:-----:|
-| sandbox-us-east-2.twdps.digital |       |   •   |
-| sandbox-us-east-2.twdps.io      |       |   •   |
-| prod-us-east-1.twdps.digital    |   •   |       |
-| prod-us-east-1.twdps.io         |   •   |       |
-| dev.twdps.digital               |   •   |       |
-| dev.twdps.io                    |   •   |       |
-| qa.twdps.digital                |   •   |       |
-| qa.twdps.io                     |   •   |       |
-| preview.twdps.digital           |       |   •   |
-| preview.twdps.io                |       |   •   |
-| prod.twdps.digital              |   •   |       |
-| prod.twdps.io                   |   •   |       |
+| hosted zone                         | dps-1 | dps-2 |
+|-------------------------------------|:-----:|:-----:|
+| sandbox-us-east-2.cdicohorts_team11 |       |   •   |
+| prod-us-east-1.cdicohorts_team11    |   •   |       |
+| dev.cdicohorts_team11               |   •   |       |
+| qa.cdicohorts_team11                |   •   |       |
+| prod.cdicohorts_team11              |   •   |       |
 
 ### single declarative state
 
