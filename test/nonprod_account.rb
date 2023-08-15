@@ -12,7 +12,7 @@ require 'awspec'
 #   it { should exist }
 # end
 
-describe route53_hosted_zone('nonprod-us-east-2.cdicohorts.team11.') do
+describe route53_hosted_zone('nonprod-us-east-2.cdicohorts-eleven.') do
   it { should exist }
 end
 
