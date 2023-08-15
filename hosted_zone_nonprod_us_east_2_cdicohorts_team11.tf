@@ -2,7 +2,7 @@
 
 # # define a provider in the account where this subdomain will be managed
 provider "aws" {
-  alias  = "subdomain_sandbox_us_east_2_cdicohorts_team11"
+  alias  = "subdomain_nonprod_us_east_2_cdicohorts_team11"
   region = "us-east-2"
   assume_role {
     role_arn     = "arn:aws:iam::${var.nonprod_account_id}:role/${var.assume_role}"
@@ -11,19 +11,19 @@ provider "aws" {
 }
 
 # create a route53 hosted zone for the subdomain in the account defined by the provider above
-module "subdomain_sandbox_us_east_2_cdicohorts_team11" {
+module "subdomain_nonprod_us_east_2_cdicohorts_team11" {
   source  = "terraform-aws-modules/route53/aws//modules/zones"
   version = "2.0.0"
   create  = true
 
   providers = {
-    aws = aws.subdomain_sandbox_us_east_2_cdicohorts_team11
+    aws = aws.subdomain_nonprod_us_east_2_cdicohorts_team11
   }
 
   zones = {
-    "sandbox-us-east-2.${local.domain_cdicohorts_team11}" = {
+    "nonprod-us-east-2.${local.domain_cdicohorts_team11}" = {
       tags = {
-        cluster = "sandbox"
+        cluster = "nonprod"
       }
     }
   }
@@ -34,7 +34,7 @@ module "subdomain_sandbox_us_east_2_cdicohorts_team11" {
 }
 
 # Create a zone delegation in the top level domain for this subdomain
-module "subdomain_zone_delegation_sandbox_us_east_2_cdicohorts_team11" {
+module "subdomain_zone_delegation_nonprod_us_east_2_cdicohorts_team11" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
   version = "2.0.0"
   create  = true
@@ -47,14 +47,14 @@ module "subdomain_zone_delegation_sandbox_us_east_2_cdicohorts_team11" {
   zone_name = local.domain_cdicohorts_team11
   records = [
     {
-      name            = "sandbox-us-east-2"
+      name            = "nonprod-us-east-2"
       type            = "NS"
       ttl             = 172800
-      zone_id         = data.aws_route53_zone.zone_id_cdicohorts_team11.id
+      zone_id         = data.aws_route53_zone.zone_id_cdicohorts_eleven.id
       allow_overwrite = true
-      records         = lookup(module.subdomain_sandbox_us_east_2_cdicohorts_team11.route53_zone_name_servers,"sandbox-us-east-2.${local.domain_cdicohorts_team11}")
+      records         = lookup(module.subdomain_nonprod_us_east_2_cdicohorts_team11.route53_zone_name_servers,"nonprod-us-east-2.${local.domain_cdicohorts_team11}")
     }
   ]
 
-  depends_on = [module.subdomain_sandbox_us_east_2_cdicohorts_team11]
+  depends_on = [module.subdomain_nonprod_us_east_2_cdicohorts_team11]
 }
