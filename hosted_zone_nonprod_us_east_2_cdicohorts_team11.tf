@@ -21,7 +21,7 @@ module "subdomain_nonprod_us_east_2_cdicohorts_team11" {
   }
 
   zones = {
-    "nonprod-us-east-2.${local.domain_cdicohorts_team11}" = {
+    "sandbox-us-east-2.${local.domain_cdicohorts_team11}" = {
       tags = {
         cluster = "nonprod"
       }
@@ -47,12 +47,12 @@ module "subdomain_zone_delegation_nonprod_us_east_2_cdicohorts_team11" {
   zone_name = local.domain_cdicohorts_team11
   records = [
     {
-      name            = "nonprod-us-east-2"
+      name            = "sandbox-us-east-2"
       type            = "NS"
       ttl             = 172800
       zone_id         = data.aws_route53_zone.zone_id_cdicohorts_eleven.id
       allow_overwrite = true
-      records         = lookup(module.subdomain_nonprod_us_east_2_cdicohorts_team11.route53_zone_name_servers,"nonprod-us-east-2.${local.domain_cdicohorts_team11}")
+      records         = lookup(module.subdomain_nonprod_us_east_2_cdicohorts_team11.route53_zone_name_servers,"sandbox-us-east-2.${local.domain_cdicohorts_team11}")
     }
   ]
 
