@@ -86,7 +86,7 @@ workflows:
             - run:
                 name: test hosted zones 
                 command: |
-                  bash scripts/hosted_zone_test.sh multiaccount sandbox
+                  bash scripts/hosted_zone_test.sh multiaccount nonprod
           filters: *on-tag-main
 
   # generate-release-notes:
